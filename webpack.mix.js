@@ -40,3 +40,4 @@ mix.scripts([
 
 mix.copy('resources/assets/admin/bootstrap/fonts', 'public/fonts');
 mix.copy('resources/assets/admin/dist/fonts', 'public/fonts');
+mix.copy('resources/assets/admin/dist/img', 'public/img');
