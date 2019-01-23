@@ -11,14 +11,15 @@
     <link rel="stylesheet" href="/css/admin.css">
 
     <style>
-        table.table form{
+        table.table form {
             display: inline-block;
         }
-        button.delete{
+
+        button.delete {
             background: transparent;
             border: none;
             color: #337ab7;
-            padding: 0px;
+            padding: 0;
         }
     </style>
 
@@ -121,7 +122,9 @@
                                                 <small class="pull-right">20%</small>
                                             </h3>
                                             <div class="progress xs">
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                     aria-valuemax="100">
                                                     <span class="sr-only">20% Complete</span>
                                                 </div>
                                             </div>
