@@ -2,6 +2,7 @@
 
 namespace App;
 
+use \Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -41,10 +42,13 @@ class User extends Authenticatable
         if ($image == null) {
             return;
         }
-        Storage::delete('uploads/' . $this->image);
-        $filename = str_random(10) . '.' . $image->extention();
-        $image->saveAs('uploads', $filename);
-        $this->image = $filename;
+
+        if ($this->avatar != null) {
+            Storage::delete('uploads/' . $this->avatar);
+        }
+        $filename = str_random(10) . '.' . $image->extension();
+        $image->storeAs('uploads', $filename);
+        $this->avatar = $filename;
         $this->save();
     }
 
