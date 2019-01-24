@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email',
     ];
 
     /**
@@ -56,15 +56,21 @@ class User extends Authenticatable
     {
         $user = new static;
         $user->fill($fields);
-        $user->password = bcrypt($fields['password']);
         $user->save();
         return $user;
+    }
+
+    public function generatePassword($pass)
+    {
+        if ($pass != null) {
+            $this->password = bcrypt($pass);
+            $this->save();
+        }
     }
 
     public function edit($fields)
     {
         $this->fill($fields);
-        $this->password = bcrypt($fields['password']);
         $this->save();
     }
 
