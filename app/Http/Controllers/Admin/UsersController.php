@@ -38,6 +38,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -51,16 +52,7 @@ class UsersController extends Controller
         return redirect()->route('users.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -98,7 +90,7 @@ class UsersController extends Controller
         $user->edit($request->all());
         $user->generatePassword($request->get('password'));
         $user->uploadAvatar($request->file('avatar'));
-        redirect()->route('users.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -109,6 +101,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->remove();
+
+        return redirect()->route('users.index');
     }
 }

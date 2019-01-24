@@ -43,13 +43,25 @@ class User extends Authenticatable
             return;
         }
 
-        if ($this->avatar != null) {
-            Storage::delete('uploads/' . $this->avatar);
-        }
+        $this->removeAvatar();
+
         $filename = str_random(10) . '.' . $image->extension();
         $image->storeAs('uploads', $filename);
         $this->avatar = $filename;
         $this->save();
+    }
+
+    public function remove()
+    {
+        $this->removeAvatar();
+        $this->delete();
+    }
+
+    public function removeAvatar()
+    {
+        if ($this->avatar != null) {
+            Storage::delete('uploads/' . $this->avatar);
+        }
     }
 
     public static function add($fields)
@@ -83,11 +95,7 @@ class User extends Authenticatable
         return '/uploads/' . $this->avatar;
     }
 
-    public function remove()
-    {
-        Storage::delete('uploads/' . $this->image);
-        $this->delete();
-    }
+
 
     public function comments()
     {
